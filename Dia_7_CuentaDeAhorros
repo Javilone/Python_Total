@@ -1,0 +1,72 @@
+from os import system
+from random import randint
+
+class Persona():
+    def __init__(self, nombre, apellidos):
+        self.nombre = nombre
+        self.apellidos = apellidos
+
+class Cliente(Persona):
+    def __init__(self, nombre, apellidos, numeroDeCuenta, balance=0):
+        super().__init__(nombre, apellidos)
+        self.numeroDeCuenta = numeroDeCuenta
+        self.balance = balance
+
+    def __str__(self):
+        return f'Hola, {self.nombre} {self.apellidos}.\nActualmente, en tu cuenta {self.numeroDeCuenta} tienes {self.balance}€.'
+    
+    def depositar(self):
+        system('clear')
+        agregarFondo = int(input("¿Cuánto quieres ingresar en euros?: "))
+        self.balance += agregarFondo
+        print(f"\nEstupendo, agregaste {agregarFondo} euros a tu cuenta {self.numeroDeCuenta}.")
+        
+    def retirar(self):
+        system('clear')
+        retirarFondo = int(input("¿Cuántos euros quieres retirar de tu cuenta?: "))
+        if (self.balance - retirarFondo) >= 0:
+            self.balance -= retirarFondo
+            print(f"\nEstá bien, has retirado {retirarFondo} euros de tu cuenta {self.numeroDeCuenta}.")
+        else:
+            print(f'No puedes retirar tanto efectivo. Saldo insuficiente. Actualmente posees {self.balance}')
+
+def crearCliente():
+    system('clear')
+    nombre = input(f'¡Hola! ¿Me indica su nombre, por favor?: ')
+    apellidos = input(f'Indíqueme sus dos apellidos, por favor: ')
+    numeroDeCuenta = randint(10000, 100000)
+    cliente = Cliente(nombre, apellidos, numeroDeCuenta)
+    system('clear')
+    print(f'Bienvenid@, {cliente.nombre} {cliente.apellidos}. \n Su número de cuenta es {cliente.numeroDeCuenta} y su saldo actual es de {cliente.balance}€.')
+    return cliente
+
+def realizarOperaciones():
+    programa = True
+    while programa == True:
+        eleccion = str(input("""\nPor favor, elije una opción.
+              - A: Agregar saldo.
+              - B: Retirar saldo.
+              - C: Consultar saldo.
+              - D: Salir.
+              - ¿Cuál desea?: """))
+        eleccion.lower
+        if (eleccion == 'a'):
+            Cliente.depositar(cliente)
+        elif (eleccion == 'b'):
+            Cliente.retirar(cliente)
+        elif (eleccion == 'c'):
+            system('clear')
+            print(f'Actualmente tiene en su cuenta {cliente.numeroDeCuenta} un total de {cliente.balance}€.')
+        elif (eleccion == 'd'):
+            print('Chao!')
+            break
+        else:
+            system('clear')
+            print('Por favor, elija entre las opciones A, B, C o D')
+    
+    
+# Crear el cliente y realizar operaciones
+cliente = crearCliente()
+realizarOperaciones()
+
+
