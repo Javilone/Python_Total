@@ -1,4 +1,4 @@
-!<p align="center">
+<p align="center">
   <img src="https://github.com/Javilone/Python_Total/blob/main/Readme/repository-open-graph-template.jpg?raw=true" alt="Python repository" width="65%" style="border: 1px solid #000;">
 </p>
 
